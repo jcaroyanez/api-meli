@@ -1,12 +1,12 @@
 import { Router } from 'express'
-import { fetchItemsByQuery } from '../service/item.js'
+import { fetchFindById, fetchItemsByQuery } from '../service/item.js'
 import { defaultAutor } from '../middleware/defaultAutor.js'
 const router = Router();
 
-const getItemById = (req, res, next) => {
-  if (req.params.id) {
-    res.json({ message: 'id' })
-  }
+const getItemById = async (req, res, next) => {
+  const id = req.params.id;
+  const data = await fetchFindById(id)
+  res.json({ author: res.author, item: data })
 }
 
 const getItemsByQuery = async (req, res, next) => {

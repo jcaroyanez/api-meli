@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { URL_ITEMS } from '../definitions/contans.js';
-import { mapperItems } from '../util/util.js';
+import { URL_DETAIL, URL_ITEMS } from '../definitions/contans.js';
+import { mapperItemDetail, mapperItems } from '../util/util.js';
 
 export const fetchItemsByQuery = async query => {
   try {
@@ -9,4 +9,22 @@ export const fetchItemsByQuery = async query => {
   } catch (error) {
     return error
   }
-} 
+}
+
+export const fetchFindById = async id => {
+  try {
+    const [detailItem, description] = await Promise.all(
+      [
+        axios.get(`${URL_DETAIL}${id}`),
+        axios.get(`${URL_DETAIL}${id}/description`)
+      ]
+    )
+ 
+    return {
+      ...mapperItemDetail(detailItem.data),
+      description: description.data.plain_text
+    }
+  } catch (error) {
+    return error
+  }
+}
