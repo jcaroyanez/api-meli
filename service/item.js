@@ -5,7 +5,7 @@ import { mapperItemDetail, mapperItems } from '../util/util.js';
 export const fetchItemsByQuery = async query => {
   try {
     const { data } = await axios.get(`${URL_ITEMS}${query}&&limit=4`)
-    return mapperItems(data.results);
+    return mapperItems(data);
   } catch (error) {
     return error
   }
