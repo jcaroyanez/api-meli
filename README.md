@@ -1,6 +1,6 @@
 # Comenzar a correr el proyecto
 
-esta api esta construida con node + spress
+esta api esta construida con node + express
 
 ## Scritp disponibles
 
